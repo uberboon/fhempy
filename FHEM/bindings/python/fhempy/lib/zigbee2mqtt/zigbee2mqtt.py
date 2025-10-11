@@ -87,14 +87,14 @@ class zigbee2mqtt(FhemModule):
             await utils.run_blocking(
                 functools.partial(
                     subprocess.call,
-                    ["pnpm", "i", "--frozen-lockfile"],
+                    ["bash", "-i", "-c", "pnpm i --frozen-lockfile"],
                     cwd=z2m_directory,
                 )
             )
             await utils.run_blocking(
                 functools.partial(
                     subprocess.call,
-                    ["pnpm", "run", "build"],
+                    ["bash", "-i", "-c", "pnpm run build"],
                     cwd=z2m_directory,
                 )
             )
@@ -159,14 +159,14 @@ class zigbee2mqtt(FhemModule):
                 await utils.run_blocking(
                     functools.partial(
                         subprocess.call,
-                        ["pnpm", "i", "--frozen-lockfile"],
+                        ["bash", "-i", "-c", "pnpm i --frozen-lockfile"],
                         cwd=z2m_directory,
                     )
                 )
                 await utils.run_blocking(
                     functools.partial(
                         subprocess.call,
-                        ["pnpm", "run", "build"],
+                        ["bash", "-i", "-c", "pnpm run build"],
                         cwd=z2m_directory,
                     )
                 )
@@ -225,7 +225,7 @@ class zigbee2mqtt(FhemModule):
     async def check_npm_installation(self):
         try:
             ver = await utils.run_blocking(
-                functools.partial(subprocess.check_output, ["npm", "--version"])
+                functools.partial(subprocess.check_output, ["bash", "-i", "-c", "npm --version"])
             )
             await fhem.readingsSingleUpdateIfChanged(
                 self.hash, "npm", ver.decode("ascii").rstrip(), 1
@@ -240,7 +240,7 @@ class zigbee2mqtt(FhemModule):
     async def check_pnpm_installation(self):
         try:
             ver = await utils.run_blocking(
-                functools.partial(subprocess.check_output, ["pnpm", "--version"])
+                functools.partial(subprocess.check_output, ["bash", "-i", "-c", "pnpm --version"])
             )
             await fhem.readingsSingleUpdateIfChanged(
                 self.hash, "pnpm", ver.decode("ascii").rstrip(), 1
@@ -265,7 +265,7 @@ class zigbee2mqtt(FhemModule):
         await fhem.readingsSingleUpdate(self.hash, "z2m_version", version, 1)
 
         try:
-            self.proc = subprocess.Popen(["node", "./index.js"], cwd=z2m_directory)
+            self.proc = subprocess.Popen(["bash", "-i", "-c", "node ./index.js"], cwd=z2m_directory)
             await fhem.readingsSingleUpdate(self.hash, "state", "running", 1)
             if self.check_process_task is None:
                 self.check_process_task = self.create_async_task(self.check_process())
