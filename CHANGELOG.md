@@ -1,6 +1,24 @@
 # CHANGELOG
 
 
+## v0.1.754 (2025-10-11)
+
+### Bug Fixes
+
+- **zigbee2mqtt**: Fix venv usage
+  ([`5fc5e45`](https://github.com/fhempy/fhempy/commit/5fc5e45136329c895a61f7229ddb08d43c61dfee))
+
+### Chores
+
+- **deps**: Bump shogo82148/actions-setup-perl from 1.31.4 to 1.33.0
+  ([#489](https://github.com/fhempy/fhempy/pull/489),
+  [`2879095`](https://github.com/fhempy/fhempy/commit/2879095a388e97b021aa35b7c7aa1fed7bb8d694))
+
+- **deps-dev**: Bump virtualenv from 20.25.1 to 20.26.6
+  ([#483](https://github.com/fhempy/fhempy/pull/483),
+  [`060fd43`](https://github.com/fhempy/fhempy/commit/060fd4310574e1f1250ec0e505c086faab79e93a))
+
+
 ## v0.1.753 (2025-03-09)
 
 ### Bug Fixes
